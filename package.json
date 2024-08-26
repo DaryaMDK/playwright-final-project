@@ -3,13 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "babel-node src/main.js",
+    "format:ci": "prettier . --check",
+    "format": "prettier . --write",
+    "lint:ci": "eslint .",
+    "lint": "eslint . --fix",
+    "build": "babel src --out-dir build --source-maps inline",
+    "test": "jest --verbose --runInBand --setupFiles dotenv/config",
+    "coverage": "jest --coverage --runInBand",
+    "allure": "allure serve allure-results",
+    "allure:ci": "allure generate allure-results --clean",
+    "allure:ci:show": "allure open allure-report"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DaryaMDK/playwright-final-project.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Darya Miloradova",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DaryaMDK/playwright-final-project/issues"
@@ -29,7 +41,11 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^17.10.2",
     "eslint-plugin-promise": "^6.1.1",
     "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }
