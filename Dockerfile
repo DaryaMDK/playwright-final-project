@@ -1,11 +1,21 @@
-FROM mcr.microsoft.com/playwright:v1.40.0-jammy
+# Используем официальный образ Node.js версии 20.11 в качестве базового образа
+FROM node:20.11
 
+# Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 
+# Копируем файлы package.json и package-lock.json внутрь контейнера
+COPY package.json package-lock.json ./
+
+# Устанавливаем зависимости проекта
+RUN npm ci
+
+# Копируем все остальные файлы проекта внутрь контейнера
 COPY . .
 
-RUN npm ci
-RUN npx playwright install --with-deps
-ENV CI=true
+# В докере для улучшения кэширования рекомендуется сначала копировать файлы
+# package.json и package-lock.json, а затем выполнять
+# установку зависимостей и копировать остальные файлы проекта
 
-CMD ["npm", "test", "&&", "cp", "-r", "allure-results", "/app/allure-results"]
+# Опционально: можно добавить команду, которая будет запускаться при старте контейнера
+# CMD ["npm", "start"]
