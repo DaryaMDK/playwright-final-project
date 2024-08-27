@@ -1,5 +1,5 @@
 # Используем официальный образ Playwright, который уже включает необходимые зависимости
-FROM mcr.microsoft.com/playwright:v1.39.0-focal
+FROM mcr.microsoft.com/playwright:v1.46.1-jammy
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
