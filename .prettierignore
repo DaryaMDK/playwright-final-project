@@ -1,2 +1,9 @@
-reports
 build
+node_modules/
+dist/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/allure-report/
+/allure-results/
