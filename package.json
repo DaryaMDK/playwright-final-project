@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test",
+    "test:all": "playwright test",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "test:failed": "playwright test --last-failed",
@@ -16,6 +16,9 @@
     "allure": "allure serve allure-results",
     "allure:ci": "allure generate allure-results --clean",
     "allure:ci:show": "allure open allure-report",
+    "allure:generate": "npx allure generate ./allure-results --clean",
+    "allure:serve": "npx allure serve",
+    "test": "npx playwright test && npm run allure:generate",
     "format:ci": "prettier . --check",
     "format": "prettier . --write",
     "lint:ci": "eslint .",
