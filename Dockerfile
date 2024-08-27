@@ -4,8 +4,10 @@ FROM node:20.11
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 
-# Устанавливаем JDK для Allure
-RUN apt-get update && apt-get install -y openjdk-11-jdk
+# Обновляем списки пакетов и устанавливаем JDK 11
+RUN apt-get update && apt-get install -y software-properties-common \
+    && add-apt-repository -y ppa:openjdk-r/ppa \
+    && apt-get update && apt-get install -y openjdk-11-jdk
 
 # Копируем файлы package.json и package-lock.json внутрь контейнера
 COPY package.json package-lock.json ./
