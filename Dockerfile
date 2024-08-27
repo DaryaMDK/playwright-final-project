@@ -7,10 +7,10 @@ WORKDIR /app
 # Копируем файлы package.json и package-lock.json внутрь контейнера
 COPY package.json package-lock.json ./
 
-# Устанавливаем зависимости проекта
-RUN npm ci
-
-# Копируем все остальные файлы проекта внутрь контейнера
 COPY . .
+
+RUN npm ci
+RUN npx playwright install --with-deps
+ENV CI=true
 
 CMD ["npm", "test", "&&", "cp", "-r", "allure-results", "/app/allure-results"]
