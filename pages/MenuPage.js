@@ -8,4 +8,13 @@ export class MenuPage {
     this.logoutLink = page.locator('#logout_sidebar_link');
     this.aboutLink = page.locator('#about_sidebar_link');
   }
+
+  async openMenu() {
+    await this.menuButton.click();
+  }
+
+  async logout() {
+    await this.openMenu();
+    await this.logoutLink.click();
+  }
 }
